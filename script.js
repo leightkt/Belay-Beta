@@ -6,9 +6,9 @@ const OPEN_WEATHER_URL = 'http://api.openweathermap.org/data/2.5/weather';
 // const mountainProjectKey = config.mountainProjectKey;
 // const openWeatherKey = config.openWeatherKey;
 
-const mapQuestKey = "<?php echo $mapQuestKey ?>";
-const mountainProjectKey = "<?php echo $mountainProjectKey ?>";
-const openWeatherKey = "<?php echo $openWeatherKey ?>";
+const mapQuestKey = <?php echo $mapQuestKey ?>;
+const mountainProjectKey = <?php echo $mountainProjectKey ?>;
+const openWeatherKey = <?php echo $openWeatherKey ?>;
 
 var routeRatings = {
 	'5.0' : 1,
