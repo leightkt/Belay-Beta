@@ -6,12 +6,49 @@ const mapQuestKey = config.mapQuestKey;
 const mountainProjectKey = config.mountainProjectKey;
 const openWeatherKey = config.openWeatherKey;
 
+var routeRatings = {
+	'5.0' : 1,
+	'5.1' : 2,
+	'5.2' : 3,
+	'5.3' : 4,
+	'5.4' : 5,
+	'5.5' : 6,
+	'5.6' : 7,
+	'5.7' : 8,
+	'5.8' : 9,
+	'5.9' : 10,
+	'5.10a' : 11,
+	'5.10b' : 12,
+	'5.10c' : 13,
+	'5.10d' : 14,
+	'5.11a' : 15,
+	'5.11b' : 16,
+	'5.11c' : 17,
+	'5.11d' : 18,
+	'5.12a' : 19,
+	'5.12b' : 20,
+	'5.12c' : 21,
+	'5.12d' : 22,
+	'5.13a' : 23,
+	'5.13b' : 24,
+	'5.13c' : 25,
+	'5.13d' : 26,
+	'5.14a' : 27,
+	'5.14b' : 28,
+	'5.14c' : 29,
+	'5.14d' : 30,
+	'5.15a' : 31,
+	'5.15b' : 32,
+	'5.15c' : 33,
+	'5.15d' : 34,
+}
+
 var info = {
 }
 
-//Does not sort difficulty correctly when comparing 5.10+ to anything above 5.1
-
 function checkDifficultyScale(maxDiff, minDiff, location) {
+	var maxDiff = routeRatings[maxDiff];
+	var minDiff = routeRatings[minDiff];
 	if (maxDiff < minDiff) {
 		var routeHTML = "<h3>Please Enter a Maximum Difficulty Greater than the Minimum Difficulty</h3>";
   		displayMountainProjectData(routeHTML);
@@ -39,9 +76,7 @@ function returnLatLong(result) {
   		displayMountainProjectData(routeHTML);
 	} else {
 		  var latitude = result.results[0].locations[0].displayLatLng.lat;
-		  console.log(latitude);
 		  var longitude = result.results[0].locations[0].displayLatLng.lng;
-		  console.log(longitude);
 		  info.lat = latitude;
 		  info.lon = longitude;
 	  	getRoutesFromAPI(info, sortRoutes);
@@ -61,8 +96,6 @@ function getRoutesFromAPI(info, callback){
 }
 
 function sortRoutes(result){
-	console.log(result);
-	console.log(info);
 	if ( result.routes == 0){
 		var routeHTML = "<h3>No Routes Found Matching Your Criteria</h3>";
   		displayMountainProjectData(routeHTML);
@@ -89,7 +122,7 @@ function returnTopTen(data) {
 function renderRoutes(data){
 	routeHTML = "";
 	data.forEach(function(route) {
-		routeHTML += '<section><h3>'+route.name+'</h3>\
+		routeHTML += '<section id="'+route.name+'"><h3>'+route.name+'</h3>\
 		<h4>Route Type: '+route.type+'</h4>\
 		<h4>Route Rating: '+route.rating+'</h4>\
 		<h4>Route Stars: '+route.stars+'</h4>\
@@ -111,28 +144,28 @@ function getWeatherFromAPI(lat, lon, callback){
 }
 
 function orderWeather(result){
-	console.log(result);
 	var temp = result.main.temp;
-	console.log(temp);
 	var humidity = result.main.humidity;
-	console.log(humidity);
 	var windSpeed = result.wind.speed;
-	console.log(windSpeed);
-	var sunrise = result.sys.sunrise;
-	console.log(sunrise);
-	var sunset = result.sys.sunset;
-	console.log(sunset);
+	var sunrise = Unix_timestamp(result.sys.sunrise);
+	var sunset = Unix_timestamp(result.sys.sunset);
 	var weatherDescription = result.weather[0].description;
-	console.log(weatherDescription);
 	var locationName = result.name;
-	console.log(locationName);
 	renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescription, locationName);
 }
 
-//find a way to pass and display route name on weather page
+function Unix_timestamp(t)
+{
+var dt = new Date(t*1000);
+var hr = dt.getHours();
+var m = "0" + dt.getMinutes();
+var s = "0" + dt.getSeconds();
+return hr+ ':' + m.substr(-2) + ':' + s.substr(-2);  
+}
 
 function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescription, locationName){
-	weatherHTML = '<h4>Location: '+locationName+'</h4>\
+	weatherHTML = '<h4>Route Name: '+info.routeName+'</h4>\
+		<h4>Location: '+locationName+'</h4>\
 		<h4>Current Temperature: '+temp+' F</h4>\
 		<h4>Humidity: '+humidity+'%</h4>\
 		<h4>Wind Speed: '+windSpeed+'mph</h4>\
@@ -181,7 +214,6 @@ function clearRouteData() {
 function getLocation() {
   $('form').submit(event => {
     event.preventDefault();
-    console.log('clicked submit');
     clearRouteData();
     var cityTarget = $(event.currentTarget).find('.js-city-input');
     var city = cityTarget.val();
@@ -197,8 +229,7 @@ function getLocation() {
     var maxDistanceTarget = $(event.currentTarget).find('.js-max-distance');
     info.maxDistance = maxDistanceTarget.val();
     checkDifficultyScale(info.maxDiff, info.minDiff, location);
-    clearForm(cityTarget, stateTarget, minDiffTarget, maxDiffTarget, maxDistanceTarget, typeTarget);
-  });
+   });
 }
 
 function getWeather() {
@@ -209,6 +240,7 @@ function getWeather() {
 		toggleForm();
 		var lat = $(this).closest('section').find('.js-latitude').attr("id");
 		var lon = $(this).closest('section').find('.js-longitude').attr("id");
+		info.routeName = $(this).closest('section').attr("id");
 		getWeatherFromAPI(lat, lon, orderWeather);
 	});
 }
@@ -223,10 +255,25 @@ function hideWeather() {
 	});
 }
 
+function newSearch() {
+	$('main').on('click', 'button.js-new-search', function(){
+		event.preventDefault();
+		var cityTarget = $(event.currentTarget).find('.js-city-input');
+    	var stateTarget = $(event.currentTarget).find('.js-state-input');
+    	var typeTarget = $(event.currentTarget).find('.js-route-type');
+    	var minDiffTarget = $(event.currentTarget).find('.js-min-difficulty');
+    	var maxDiffTarget = $(event.currentTarget).find('.js-max-difficulty');
+    	var maxDistanceTarget = $(event.currentTarget).find('.js-max-distance');
+		clearForm(cityTarget, stateTarget, minDiffTarget, maxDiffTarget, maxDistanceTarget, typeTarget);
+		clearRouteData();
+	});
+}
+
 function masterFunction() {
 	getLocation();
 	getWeather();
 	hideWeather();
+	newSearch();
 }
 
 masterFunction();
