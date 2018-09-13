@@ -1,5 +1,5 @@
 <?php
-$mapQuestKey = getenv(mapQuestKey);
-$mountainProjectKey = getenv(mountainProjectKey);
-$openweatherKey = getenv(openweatherKey)
+$mapQuestKey = getenv('mapQuestKey');
+$mountainProjectKey = getenv('mountainProjectKey');
+$openweatherKey = getenv('openweatherKey');
 ?>
