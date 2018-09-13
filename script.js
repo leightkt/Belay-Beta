@@ -2,9 +2,9 @@ const MAPQUEST_GEOCODER_URL = 'http://www.mapquestapi.com/geocoding/v1/address?'
 const MOUNTAIN_PROJECT_URL = 'https://www.mountainproject.com/data/get-routes-for-lat-lon';
 const OPEN_WEATHER_URL = 'http://api.openweathermap.org/data/2.5/weather';
 
-const mapQuestKey = config.mapQuestKey;
-const mountainProjectKey = config.mountainProjectKey;
-const openWeatherKey = config.openWeatherKey;
+// const mapQuestKey = config.mapQuestKey;
+// const mountainProjectKey = config.mountainProjectKey;
+// const openWeatherKey = config.openWeatherKey;
 
 var routeRatings = {
 	'5.0' : 1,
