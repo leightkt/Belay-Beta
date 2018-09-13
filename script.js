@@ -59,7 +59,8 @@ function checkDifficultyScale(maxDiff, minDiff, location) {
 
 function getLatLongFromAPI(location, callback) {
   	const query = {
-    key: mapQuestKey,
+  	key: process.env.mapQuestKey,
+    // key: mapQuestKey,
     location: location,
   }
   $.getJSON(MAPQUEST_GEOCODER_URL, query, callback);
@@ -85,7 +86,8 @@ function returnLatLong(result) {
 
 function getRoutesFromAPI(info, callback){
 	const query = {
-	key: mountainProjectKey,
+	key: process.env.mountainProjectKey,
+	// key: mountainProjectKey,
 	lat: info.lat,
 	lon: info.lon,
 	maxDistance: info.maxDistance,
@@ -137,7 +139,8 @@ function getWeatherFromAPI(lat, lon, callback){
 	const query = {
 	lat: lat,
 	lon: lon,
-	APIkey: openWeatherKey,
+	APIkey: process.env.openWeatherKey,
+	// APIkey: openWeatherKey,
 	units: 'imperial',
 	}
 	$.getJSON(OPEN_WEATHER_URL, query, callback);
