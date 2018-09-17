@@ -200,7 +200,7 @@ function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescri
 		<button type="submit" class="js-weather-hide">Return to Route List</button>';
 	displayWeatherData(weatherHTML);
 }
-//console is throwing map display errors- fix please
+
 function renderRouteMap(lat, lon){
 	var locationHTML = '<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?center='+lat+','+lon+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>';
 	displayRouteLocation(locationHTML);
