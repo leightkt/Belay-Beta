@@ -1,6 +1,7 @@
 const MAPQUEST_GEOCODER_URL = 'http://www.mapquestapi.com/geocoding/v1/address?';
 const MOUNTAIN_PROJECT_URL = 'https://www.mountainproject.com/data/get-routes-for-lat-lon';
 const OPEN_WEATHER_URL = 'http://api.openweathermap.org/data/2.5/weather';
+const MAPQUEST_REVERSE_GEOCODER_URL = 'http://www.mapquestapi.com/geocoding/v1/reverse';
 
 const mapQuestKey = config.mapQuestKey;
 const mountainProjectKey = config.mountainProjectKey;
@@ -57,6 +58,11 @@ function checkDifficultyScale(maxDiff, minDiff, location) {
 	}
 }
 
+function formatLocation(city, state){
+	var location = city+','+state;
+	return location;
+}
+
 function getLatLongFromAPI(location, callback) {
   	const query = {
     key: mapQuestKey,
@@ -65,22 +71,39 @@ function getLatLongFromAPI(location, callback) {
   $.getJSON(MAPQUEST_GEOCODER_URL, query, callback);
 }
 
-function formatLocation(city, state){
-	var location = city+','+state;
-	return location;
+function getSearchedLocationAPI(location, callback) {
+  	const query = {
+    key: mapQuestKey,
+    location: location,
+  }
+  $.getJSON(MAPQUEST_REVERSE_GEOCODER_URL, query, callback);
 }
 
+
 function returnLatLong(result) {
+	var latitude = result.results[0].locations[0].displayLatLng.lat;
+	var longitude = result.results[0].locations[0].displayLatLng.lng;
+	var location = latitude+','+longitude;
+	console.log(location);
+	getSearchedLocationAPI(location, renderLocationFoundbyAPI);
 	if (result.results[0].locations == 0) {
 		var routeHTML = "<h3>Location Not Found</h3>";
   		displayMountainProjectData(routeHTML);
 	} else {
-		  var latitude = result.results[0].locations[0].displayLatLng.lat;
-		  var longitude = result.results[0].locations[0].displayLatLng.lng;
 		  info.lat = latitude;
 		  info.lon = longitude;
 	  	getRoutesFromAPI(info, sortRoutes);
 	 	}
+}
+
+function renderLocationFoundbyAPI(result) {
+	console.log(result);
+	var locationCity = result.results[0].locations[0].adminArea5;
+	var locationState = result.results[0].locations[0].adminArea3;
+	var map = result.results[0].locations[0].mapUrl;
+	locationHTML = '<h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
+	<img src="'+map+'">';
+	displaySearchedLocation(locationHTML);
 }
 
 function getRoutesFromAPI(info, callback){
@@ -96,6 +119,7 @@ function getRoutesFromAPI(info, callback){
 }
 
 function sortRoutes(result){
+	console.log(result);
 	if ( result.routes == 0){
 		var routeHTML = "<h3>No Routes Found Matching Your Criteria</h3>";
   		displayMountainProjectData(routeHTML);
@@ -185,6 +209,11 @@ function displayWeatherData(data) {
   $('.js-weather-display').html(data);
 }
 
+function displaySearchedLocation(data) {
+	$('.js-location-display').html(data);
+
+}
+
 function clearForm(cityTarget, stateTarget, minDiffTarget, maxDiffTarget, maxDistanceTarget, typeTarget){
 	cityTarget.val("");
 	stateTarget.val("");
@@ -208,6 +237,10 @@ function toggleForm(){
 
 function clearRouteData() {
 	$('.js-routeList-display').html("");
+}
+
+function clearLocationDisplay(){
+	$('.js-location-display').html("");
 }
 
 //event listeners
@@ -266,6 +299,7 @@ function newSearch() {
     	var maxDistanceTarget = $(event.currentTarget).find('.js-max-distance');
 		clearForm(cityTarget, stateTarget, minDiffTarget, maxDiffTarget, maxDistanceTarget, typeTarget);
 		clearRouteData();
+		clearLocationDisplay();
 	});
 }
 

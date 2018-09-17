@@ -8,12 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="float-grid.css">
 </head>
 <body>
-	<header>
+	<header role="banner">
 		<h1>Belay Beta</h1>
 		<h2>Find it. Check it. Send it.</h2>
 	</header>
 	<main>
-		<section>
+		<section role="region">
 			<h3>Find the top rated routes near you, check the weather conditions, and go send!</h3>
 				<form action="#" class="js-location-form">
 					<h1>Your Location</h1>
@@ -171,16 +171,19 @@
 						<option value="180">180 miles</option>
 						<option value="200">200 miles</option>
 					</select><br>
-					<button type="submit" class="js-submit">Submit</button>
+					<button type="submit" class="js-submit">Get Routes</button>
 					<button type="submit" class="js-new-search">New Search</button>
 				</form>
 
 		</section>
-		<section class="js-routeList-display">
+		<section role="region" class="js-location-display">
 		</section>
-		<section class="js-weather-display hidden">
+		<section role="region" class="js-routeList-display">
+		</section>
+		<section role="region" class="js-weather-display hidden">
 		</section>
 	</main>
+	<footer role="contentinfo"></footer>
 	<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 	<script type="text/javascript" src="keys.js"></script>
 	<script type="text/javascript" src="script.js"></script>
