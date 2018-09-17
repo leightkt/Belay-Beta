@@ -1,15 +1,22 @@
 {
-  "name": "belay-beta",
+  "name": "belay-beta-app",
   "version": "1.0.0",
-  "description": "A climbing route app",
+  "description": "\"an app to find local routes and check the weather\"",
   "main": "home.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Katlyn Leight",
-  "dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leightkt/Belay-Beta.git"
   },
-  "engines": {
-    "node": "8.12.0"
+  "author": "katlyn leight",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leightkt/Belay-Beta/issues"
+  },
+  "homepage": "https://github.com/leightkt/Belay-Beta#readme",
+  "dependencies": {
+    "request": "^2.88.0"
   }
 }
