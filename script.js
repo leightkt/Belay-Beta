@@ -84,7 +84,6 @@ function returnLatLong(result) {
 	var latitude = result.results[0].locations[0].displayLatLng.lat;
 	var longitude = result.results[0].locations[0].displayLatLng.lng;
 	var location = latitude+','+longitude;
-	console.log(location);
 	getSearchedLocationAPI(location, renderLocationFoundbyAPI);
 	if (result.results[0].locations == 0) {
 		var routeHTML = "<h3>Location Not Found</h3>";
@@ -97,12 +96,11 @@ function returnLatLong(result) {
 }
 
 function renderLocationFoundbyAPI(result) {
-	console.log(result);
 	var locationCity = result.results[0].locations[0].adminArea5;
 	var locationState = result.results[0].locations[0].adminArea3;
 	var map = result.results[0].locations[0].mapUrl;
 	locationHTML = '<h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
-	<img src="'+map+'">';
+	<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=16&maptype=undefined"></iframe>';
 	displaySearchedLocation(locationHTML);
 }
 
@@ -147,6 +145,7 @@ function renderRoutes(data){
 	routeHTML = "";
 	data.forEach(function(route) {
 		routeHTML += '<section id="'+route.name+'"><h3>'+route.name+'</h3>\
+		<h4>Route Location: '+route.location[1]+', ' +route.location[2]+', ' +route.location[3]+', ' +route.location[4]+'</h4>\
 		<h4>Route Type: '+route.type+'</h4>\
 		<h4>Route Rating: '+route.rating+'</h4>\
 		<h4>Route Stars: '+route.stars+'</h4>\
@@ -168,6 +167,7 @@ function getWeatherFromAPI(lat, lon, callback){
 }
 
 function orderWeather(result){
+	console.log(result);
 	var temp = result.main.temp;
 	var humidity = result.main.humidity;
 	var windSpeed = result.wind.speed;
@@ -198,6 +198,11 @@ function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescri
 		<h4>Sunset: '+sunset+'</h4>\
 		<button type="submit" class="js-weather-hide">Return to Route List</button>';
 	displayWeatherData(weatherHTML);
+}
+
+function renderRouteMap(lat, lon){
+	var locationHTML = '<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?zoom=16&maptype=undefined"></iframe>';
+	displaySearchedLocation(locationHTML);
 }
 
 //update display
@@ -275,6 +280,7 @@ function getWeather() {
 		var lon = $(this).closest('section').find('.js-longitude').attr("id");
 		info.routeName = $(this).closest('section').attr("id");
 		getWeatherFromAPI(lat, lon, orderWeather);
+		renderRouteMap(lat, lon);
 	});
 }
 
