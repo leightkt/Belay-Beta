@@ -167,7 +167,6 @@ function getWeatherFromAPI(lat, lon, callback){
 }
 
 function orderWeather(result){
-	console.log(result);
 	var temp = result.main.temp;
 	var humidity = result.main.humidity;
 	var windSpeed = result.wind.speed;
@@ -202,7 +201,7 @@ function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescri
 
 function renderRouteMap(lat, lon){
 	var locationHTML = '<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?zoom=16&maptype=undefined"></iframe>';
-	displaySearchedLocation(locationHTML);
+	displayRouteLocation(locationHTML);
 }
 
 //update display
@@ -216,6 +215,11 @@ function displayWeatherData(data) {
 
 function displaySearchedLocation(data) {
 	$('.js-location-display').html(data);
+
+}
+
+function displayRouteLocation(data) {
+	$('.js-routeMap-display').html(data);
 
 }
 
@@ -240,12 +244,20 @@ function toggleForm(){
 	$('form').toggleClass("hidden");
 }
 
+function toggleLocationMap(){
+	$('.js-location-display').toggleClass("hidden");
+}
+
 function clearRouteData() {
 	$('.js-routeList-display').html("");
 }
 
 function clearLocationDisplay(){
 	$('.js-location-display').html("");
+}
+
+function clearRouteMapDisplay(){
+	$('.js-routeMap-display').html("");
 }
 
 //event listeners
@@ -276,6 +288,7 @@ function getWeather() {
 		toggleRoutes();
 		toggleWeather();
 		toggleForm();
+		toggleLocationMap();
 		var lat = $(this).closest('section').find('.js-latitude').attr("id");
 		var lon = $(this).closest('section').find('.js-longitude').attr("id");
 		info.routeName = $(this).closest('section').attr("id");
@@ -284,13 +297,14 @@ function getWeather() {
 	});
 }
 
-
 function hideWeather() {
 	$('main').on('click', 'button.js-weather-hide', function(){
 		event.preventDefault();
 		toggleRoutes();
 		toggleWeather();
 		toggleForm();
+		toggleLocationMap();
+		clearRouteMapDisplay();
 	});
 }
 
