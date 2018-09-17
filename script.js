@@ -100,7 +100,7 @@ function renderLocationFoundbyAPI(result) {
 	var locationState = result.results[0].locations[0].adminArea3;
 	var map = result.results[0].locations[0].mapUrl;
 	locationHTML = '<h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
-	<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=16&maptype=undefined"></iframe>';
+	<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>';
 	displaySearchedLocation(locationHTML);
 }
 
@@ -140,6 +140,8 @@ function returnTopTen(data) {
 	var topTenRoutes = data.slice(0, 10);
 	renderRoutes(topTenRoutes);
 }
+
+//route.location throwing undefined- fix that shit
 
 function renderRoutes(data){
 	routeHTML = "";
@@ -198,9 +200,9 @@ function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescri
 		<button type="submit" class="js-weather-hide">Return to Route List</button>';
 	displayWeatherData(weatherHTML);
 }
-
+//console is throwing map display errors- fix please
 function renderRouteMap(lat, lon){
-	var locationHTML = '<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?zoom=16&maptype=undefined"></iframe>';
+	var locationHTML = '<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?center='+lat+','+lon+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>';
 	displayRouteLocation(locationHTML);
 }
 
