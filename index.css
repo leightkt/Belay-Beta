@@ -29,16 +29,22 @@ footer {
 }
 
 .footer-image {
-	display: none;
+	display: inline-block;
+	opacity: 0.8;
+	position: fixed;
+	right: 5vw;
+	bottom: 0;
+	width: 90%;
+	z-index: -2;
 }
 
 form {
 	border: 0.1vw solid #bababa;
 	border-radius: 1vw;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.95);
 	display: block;
-	margin: 0 auto;
+	margin: 1vw auto;
 	padding: 1vw;
 	width: 100%;
 	z-index: 1;
@@ -46,11 +52,18 @@ form {
 
 header {
 	background-color: #1dadcb;
+	border-radius: 1vw;
 	font-family: 'Varela Round', sans-serif;
 }
 
 .header-image {
-	display: none;
+	display: inline-block;
+	opacity: 0.8;
+	position: fixed;
+	right: 5vw;
+	top: 30vw;
+	width: 90%;
+	z-index: -2;
 }
 
 .hidden {
@@ -82,7 +95,7 @@ main {
 	border: 0.1vw solid #bababa;
 	border-radius: 1vw;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.95);
 	display: block;
 	margin: 0 auto;
 	padding: 1vw;
@@ -98,7 +111,7 @@ option {
 	border: 0.1vw solid #bababa;
 	border-radius: 1vw;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.95);
 	display: block;
 	float: none;
 	margin: 0.5vw auto;
@@ -113,7 +126,7 @@ option {
 
 .tagline {
 	border-radius: 2vw;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.8);
 	margin: 2.5vw auto;
 	padding: 2vw 1vw;
 	text-align: center;

@@ -100,7 +100,7 @@ function renderLocationFoundbyAPI(result) {
 	var locationState = result.results[0].locations[0].adminArea3;
 	var map = result.results[0].locations[0].mapUrl;
 	locationHTML = '<section class="map"> <h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
-	<iframe height="300" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>\
+	<iframe height="250" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=10&maptype=undefined" allow="geolocation *;"></iframe>\
 	</section>';
 	displaySearchedLocation(locationHTML);
 }
@@ -111,6 +111,7 @@ function getRoutesFromAPI(info, callback){
 	lat: info.lat,
 	lon: info.lon,
 	maxDistance: info.maxDistance,
+	maxResults: '100',
 	minDiff: info.minDiff,
 	maxDiff: info.maxDiff,
 	}
@@ -204,7 +205,7 @@ function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescri
 }
 
 function renderRouteMap(lat, lon){
-	var locationHTML = '<section class="map"><iframe height="300" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?center='+lat+','+lon+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>\
+	var locationHTML = '<section class="map"><iframe height="250" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?center='+lat+','+lon+'&zoom=10&maptype=undefined" allow="geolocation *;"></iframe>\
 		</section>';
 	displayRouteLocation(locationHTML);
 }
