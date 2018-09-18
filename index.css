@@ -1,3 +1,149 @@
+body {
+	background-color: #f4f4f4;
+}
+
+button {
+	background-color: #c8c8c8;
+	border: none;
+	border-radius: 8vw;
+	display: inline-block;
+	font-family: 'Varela Round', sans-serif;
+	margin-bottom: 1.0vw;
+	margin-top: 3.0vw;
+	padding: 1.0vw;
+}
+
+.center-it {
+	text-align: center;
+}
+
+footer {
+	background-color: #1dadcb;
+	bottom: 0;
+	font-family: 'Varela Round', sans-serif;
+	height: 1vw;
+	left: 0;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+}
+
+.footer-image {
+	opacity: 0.8;
+	position: fixed;
+	right: 1vw;
+	bottom: 0;
+	width: 40vw;
+	z-index: -2;
+}
+
+form {
+	border: 0.1vw solid #bababa;
+	border-radius: 1vw;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: white;
+	display: block;
+	margin: 0 auto;
+	padding: 1vw;
+	width: 100%;
+	z-index: 1;
+}
+
+header {
+	background-color: #1dadcb;
+	font-family: 'Varela Round', sans-serif;
+}
+
 .hidden {
 	display: none;
+}
+
+iframe {
+	margin: auto;
+}
+
+input {
+	margin-bottom: 1vw;
+}
+
+input::after {
+  clear: both;
+}
+
+label {
+	display: inline-block;
+	margin-bottom: 1vw;
+}
+
+main {
+	font-family: 'Abel', sans-serif;
+}
+
+.map {
+	border: 0.1vw solid #bababa;
+	border-radius: 1vw;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: white;
+	display: block;
+	margin: 0 auto;
+	padding: 1vw;
+	text-align: center;
+	width: 80%;
+}
+
+option {
+	font-family: 'Abel', sans-serif;
+}
+
+.route {
+	border: 0.1vw solid #bababa;
+	border-radius: 1vw;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: white;
+	display: block;
+	float: none;
+	margin: 0.5vw auto;
+	padding: 1vw;
+	width: 80%;
+}
+
+.route-name {
+	font-weight: bold;
+	color: #1dadcb;
+}
+
+.tagline {
+	text-align: center;
+}
+
+.weather-card {
+	border: 0.1vw solid #bababa;
+	border-radius: 1vw;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: white;
+	display: block;
+	margin: 0 auto;
+	padding: 1vw;
+	width: 80%;
+}
+
+@media only screen and (min-width: 640px) {
+.map {
+	width: 50%
+}
+
+.route {
+	float: left;
+	height: 355px;
+	width: 50%;
+}
+
+form {
+	width: 50%;
+}
+
+.weather-card {
+	width: 50%;
+}
+
 }

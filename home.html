@@ -4,23 +4,25 @@
 	<title>Belay Beta</title>
 	<meta charset="utf-8" name="description" content="an app to find the near climbing routes and weather conditions">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="index.css">
+	<link href="https://fonts.googleapis.com/css?family=Abel|Varela+Round" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="float-grid.css">
+	<link rel="stylesheet" type="text/css" href="index.css">
 	<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-maps.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-maps.css"/>
 </head>
 <body>
-	<header role="banner">
+	<header role="banner" class="row">
 		<h1>Belay Beta</h1>
 		<h2>Find it. Check it. Send it.</h2>
+<!-- 		<img src="climber.jpeg" class="header-image"> -->
 	</header>
-	<main>
-		<section role="region">
-			<h3>Find the top rated routes near you, check the weather conditions, and go send!</h3>
+	<main class="row">
+		<section role="region" class="row col-12">
+			<h3 class="tagline">Find the top rated routes near you, check the weather conditions, and go send!</h3>
 				<form action="#" class="js-location-form">
 					<h1>Your Location</h1>
 					<label for="city">City</label>
-					<input type="text" name="city" class="js-city-input" required>
+					<input type="text" name="city" class="js-city-input" required><br>
 					<label for="state">State</label>
 					<select name="state" class="js-state-input" required>
 						<option value="" selected="selected">Select a State</option>
@@ -178,16 +180,18 @@
 				</form>
 
 		</section>
-		<section role="region" class="js-location-display">
+		<section role="region" class="js-location-display col-12 center-it">
 		</section>
-		<section role="region" class="js-routeMap-display">			
+		<section role="region" class="js-routeMap-display col-12">			
 		</section>
-		<section role="region" class="js-routeList-display">
+		<section role="region" class="js-routeList-display col-12">
 		</section>
-		<section role="region" class="js-weather-display hidden">
+		<section role="region" class="js-weather-display hidden col-12">
 		</section>
 	</main>
-	<footer role="contentinfo"></footer>
+	<footer role="contentinfo">
+	</footer>
+	<img src="climber.jpeg" class="footer-image">
 	<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 	<script type="text/javascript" src="keys.js"></script>
 	<script type="text/javascript" src="script.js"></script>

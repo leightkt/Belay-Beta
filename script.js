@@ -99,8 +99,9 @@ function renderLocationFoundbyAPI(result) {
 	var locationCity = result.results[0].locations[0].adminArea5;
 	var locationState = result.results[0].locations[0].adminArea3;
 	var map = result.results[0].locations[0].mapUrl;
-	locationHTML = '<h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
-	<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>';
+	locationHTML = '<section class="map"> <h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
+	<iframe height="300" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>\
+	</section>';
 	displaySearchedLocation(locationHTML);
 }
 
@@ -146,7 +147,7 @@ function returnTopTen(data) {
 function renderRoutes(data){
 	routeHTML = "";
 	data.forEach(function(route) {
-		routeHTML += '<section id="'+route.name+'"><h3>'+route.name+'</h3>\
+		routeHTML += '<section class="route col-4" id="'+route.name+'"><h3 class="route-name">'+route.name+'</h3>\
 		<h4>Route Location: '+route.location[1]+', ' +route.location[2]+', ' +route.location[3]+', ' +route.location[4]+'</h4>\
 		<h4>Route Type: '+route.type+'</h4>\
 		<h4>Route Rating: '+route.rating+'</h4>\
@@ -189,7 +190,7 @@ return hr+ ':' + m.substr(-2) + ':' + s.substr(-2);
 }
 
 function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescription, locationName){
-	weatherHTML = '<h4>Route Name: '+info.routeName+'</h4>\
+	weatherHTML = '<section class="weather-card"><h4 class="route-name">Route Name: '+info.routeName+'</h4>\
 		<h4>Location: '+locationName+'</h4>\
 		<h4>Current Temperature: '+temp+' F</h4>\
 		<h4>Humidity: '+humidity+'%</h4>\
@@ -197,12 +198,14 @@ function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescri
 		<h4>Weather Description: '+weatherDescription+'</h4>\
 		<h4>Sunrise: '+sunrise+'</h4>\
 		<h4>Sunset: '+sunset+'</h4>\
-		<button type="submit" class="js-weather-hide">Return to Route List</button>';
+		<button type="submit" class="js-weather-hide">Return to Route List</button>\
+		</section>';
 	displayWeatherData(weatherHTML);
 }
 
 function renderRouteMap(lat, lon){
-	var locationHTML = '<iframe height="400" width="300" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?center='+lat+','+lon+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>';
+	var locationHTML = '<section class="map"><iframe height="300" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/latlng/'+lat+','+lon+'?center='+lat+','+lon+'&zoom=16&maptype=undefined" allow="geolocation *;"></iframe>\
+		</section>';
 	displayRouteLocation(locationHTML);
 }
 
