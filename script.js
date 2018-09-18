@@ -86,7 +86,7 @@ function returnLatLong(result) {
 	var location = latitude+','+longitude;
 	getSearchedLocationAPI(location, renderLocationFoundbyAPI);
 	if (result.results[0].locations == 0) {
-		var routeHTML = "<h3>Location Not Found</h3>";
+		var routeHTML = '<h3 class="tagline">Location Not Found</h3>';
   		displayMountainProjectData(routeHTML);
 	} else {
 		  info.lat = latitude;
@@ -120,7 +120,7 @@ function getRoutesFromAPI(info, callback){
 function sortRoutes(result){
 	console.log(result);
 	if ( result.routes == 0){
-		var routeHTML = "<h3>No Routes Found Matching Your Criteria</h3>";
+		var routeHTML = '<h3 class="tagline">No Routes Found Matching Your Criteria</h3>';
   		displayMountainProjectData(routeHTML);
 	} else {
 		var sortedRoutes = result.routes.filter(function(route) {

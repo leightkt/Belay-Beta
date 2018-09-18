@@ -29,12 +29,7 @@ footer {
 }
 
 .footer-image {
-	opacity: 0.8;
-	position: fixed;
-	right: 1vw;
-	bottom: 0;
-	width: 40vw;
-	z-index: -2;
+	display: none;
 }
 
 form {
@@ -52,6 +47,10 @@ form {
 header {
 	background-color: #1dadcb;
 	font-family: 'Varela Round', sans-serif;
+}
+
+.header-image {
+	display: none;
 }
 
 .hidden {
@@ -113,7 +112,12 @@ option {
 }
 
 .tagline {
+	border-radius: 2vw;
+	background-color: rgba(255, 255, 255, 0.5);
+	margin: 2.5vw auto;
+	padding: 2vw 1vw;
 	text-align: center;
+	width: 65%;
 }
 
 .weather-card {
@@ -128,6 +132,16 @@ option {
 }
 
 @media only screen and (min-width: 640px) {
+.header-image {
+	display: inline-block;
+	opacity: 0.8;
+	position: fixed;
+	left: 1vw;
+	top: 0;
+	width: 60%;
+	z-index: -2;
+}
+
 .map {
 	width: 50%
 }
@@ -136,6 +150,16 @@ option {
 	float: left;
 	height: 355px;
 	width: 50%;
+}
+
+.footer-image {
+	display: inline-block;
+	opacity: 0.8;
+	position: fixed;
+	right: 1vw;
+	bottom: 0;
+	width: 40vw;
+	z-index: -2;
 }
 
 form {
