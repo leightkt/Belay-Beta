@@ -119,7 +119,6 @@ function getRoutesFromAPI(info, callback){
 }
 
 function sortRoutes(result){
-	console.log(result);
 	if ( result.routes == 0){
 		var routeHTML = '<h3 class="tagline">No Routes Found Matching Your Criteria</h3>';
   		displayMountainProjectData(routeHTML);
@@ -143,13 +142,21 @@ function returnTopTen(data) {
 	renderRoutes(topTenRoutes);
 }
 
-//route.location throwing undefined- fix that shit
+function renderRouteLocation(data){
+	var routeLocationArray = [];
+	data.location.forEach(function(loc) {
+			routeLocationArray.push(loc);
+		});
+	var routeLocation = routeLocationArray.join(', ');
+	return routeLocation
+}
 
 function renderRoutes(data){
 	routeHTML = "";
 	data.forEach(function(route) {
+		var routeLocationHTML = renderRouteLocation(route);
 		routeHTML += '<section class="route col-4" id="'+route.name+'"><h3 class="route-name">'+route.name+'</h3>\
-		<h4>Route Location: '+route.location[1]+', ' +route.location[2]+', ' +route.location[3]+', ' +route.location[4]+'</h4>\
+		<h4>Route Location: '+routeLocationHTML+'</h4>\
 		<h4>Route Type: '+route.type+'</h4>\
 		<h4>Route Rating: '+route.rating+'</h4>\
 		<h4>Route Stars: '+route.stars+'</h4>\
@@ -200,7 +207,7 @@ function renderWeather(temp, humidity, windSpeed, sunrise, sunset, weatherDescri
 		<h4>Sunrise: '+sunrise+'</h4>\
 		<h4>Sunset: '+sunset+'</h4>\
 		<button type="submit" class="js-weather-hide">Return to Route List</button>\
-		</section>';
+		<br></section>';
 	displayWeatherData(weatherHTML);
 }
 

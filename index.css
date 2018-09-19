@@ -107,6 +107,10 @@ option {
 	font-family: 'Abel', sans-serif;
 }
 
+p {
+	font-size: 0.01em;
+}
+
 .route {
 	border: 0.1vw solid #bababa;
 	border-radius: 1vw;
@@ -114,7 +118,7 @@ option {
 	background-color: rgba(255, 255, 255, 0.95);
 	display: block;
 	float: none;
-	margin: 0.5vw auto;
+	margin: 1vw auto;
 	padding: 1vw;
 	width: 80%;
 }
@@ -161,7 +165,7 @@ option {
 
 .route {
 	float: left;
-	height: 355px;
+	height: 350px;
 	width: 50%;
 }
 
