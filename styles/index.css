@@ -108,7 +108,7 @@ option {
 }
 
 p {
-	font-size: 0.01em;
+	font-size: 0.001em;
 }
 
 .route {
@@ -165,7 +165,7 @@ p {
 
 .route {
 	float: left;
-	height: 350px;
+	height: 375px;
 	width: 50%;
 }
 

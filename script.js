@@ -99,7 +99,7 @@ function renderLocationFoundbyAPI(result) {
 	var locationCity = result.results[0].locations[0].adminArea5;
 	var locationState = result.results[0].locations[0].adminArea3;
 	var map = result.results[0].locations[0].mapUrl;
-	locationHTML = '<section class="map"> <h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
+	var locationHTML = '<section class="map"> <h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
 	<iframe height="250" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=10&maptype=undefined" allow="geolocation *;"></iframe>\
 	</section>';
 	displaySearchedLocation(locationHTML);
@@ -152,7 +152,7 @@ function renderRouteLocation(data){
 }
 
 function renderRoutes(data){
-	routeHTML = "";
+	var routeHTML = "";
 	data.forEach(function(route) {
 		var routeLocationHTML = renderRouteLocation(route);
 		routeHTML += '<section class="route col-4" id="'+route.name+'"><h3 class="route-name">'+route.name+'</h3>\
