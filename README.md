@@ -2,10 +2,15 @@
 
 ## Table of Contents ##
   -[Summary](#Summary)
+  
   -[Background Information](#Background)
+  
   -[API Information](#APIs)
+  
   -[Technology](#Technology)
+  
 
+<a name="Summary"></a>
 ## Summary ##
 
 This is an application for finding the top ten rated routes climbing routes closest to a given user location, within the parameters of difficulty and
@@ -17,6 +22,7 @@ This app uses the Mountain Project, Open Weather Map, and Mapquest APIs.
 
 ![Route List](styles/assets/Screenshots/routesearch.jpg "Route List")
 
+<a name="Background"></a>
 ## Background ##
 
 Climbing terms used in this application:
@@ -31,7 +37,8 @@ Difficulty rating is set via class 5 of the [Yosemite Decimal System](https://en
 
 [Toprope](https://en.wikipedia.org/wiki/Top_rope_climbing)- Top-roping. A style in climbing in which the climber is securely attached to a rope which then passes up, through an anchor system at the top of the climb, and down to a belayer at the foot of the climb.
 
-## APIs ##
+<a name="APIs"></a>
+## API Information ##
 
 ### API Calls ###
 
@@ -74,6 +81,7 @@ var config = {
 
 Once you plug your own values in and link your file (my file keys.js is linked in line 196 of index.html), the application should pull data and run normally.
 
+<a name="Technology"></a>
 ## Technology ##
 
 This app was written using HTML, CSS, JavaScript, and JQuery. 
