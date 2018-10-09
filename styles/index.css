@@ -46,6 +46,7 @@ form {
 	display: block;
 	margin: 1vw auto;
 	padding: 1vw;
+	position: relative;
 	width: 100%;
 	z-index: 1;
 }
@@ -133,6 +134,7 @@ p {
 	background-color: rgba(255, 255, 255, 0.8);
 	margin: 2.5vw auto;
 	padding: 2vw 1vw;
+	position: relative;
 	text-align: center;
 	width: 65%;
 }
@@ -159,14 +161,48 @@ p {
 	z-index: -2;
 }
 
-.map {
+.location-map {
+	animation-name: map;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+	position: relative;
 	width: 50%
 }
 
+@keyframes map {
+	0% {
+		left: 0em;
+		top: 0em;
+	}
+	100% {
+		left: 15em;
+		top: -28em;
+	}
+}
+
+.map {
+	width: 50%;
+}
+
 .route {
+	animation-name: route;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
 	float: left;
 	height: 375px;
+	position: relative;
 	width: 50%;
+}
+
+@keyframes route {
+	0% {
+		top: 0em;
+	}
+	100% {
+		top: -20em;
+	}
 }
 
 .footer-image {
@@ -181,6 +217,42 @@ p {
 
 form {
 	width: 50%;
+
+}
+
+.form-animation {
+	animation-name: form;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+}
+
+@keyframes form {
+	0% {
+		left: 0em;
+	}
+	100% {
+		left: -15em;
+	}
+}
+
+
+.tagline-animation {
+	animation-name: tagline;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+}
+
+@keyframes tagline {
+	0% {
+		left: 0em;
+		top: 0em;
+	}
+	100% {
+		left: 9em;
+		top: -8em;
+	}
 }
 
 .weather-card {

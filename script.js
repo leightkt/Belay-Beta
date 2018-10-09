@@ -99,7 +99,7 @@ function renderLocationFoundbyAPI(result) {
 	var locationCity = result.results[0].locations[0].adminArea5;
 	var locationState = result.results[0].locations[0].adminArea3;
 	var map = result.results[0].locations[0].mapUrl;
-	var locationHTML = '<section class="map"> <h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
+	var locationHTML = '<section class="map location-map"> <h4>Location Searched: '+locationCity+', '+locationState+'</h4>\
 	<iframe height="250" width="200" border="0" marginwidth="0" marginheight="0" src="https://www.mapquest.com/embed/search/results?query='+locationCity+',%20'+locationState+'&zoom=10&maptype=undefined" allow="geolocation *;"></iframe>\
 	</section>';
 	displaySearchedLocation(locationHTML);
@@ -273,11 +273,22 @@ function clearRouteMapDisplay(){
 	$('.js-routeMap-display').html("");
 }
 
+function addAnimation(){
+	$('.tagline').addClass("tagline-animation");
+	$('form').addClass("form-animation");
+}
+
+function resetAnimation(){
+	$('.tagline').removeClass("tagline-animation");
+	$('form').removeClass("form-animation");
+}
+
 //event listeners
 function getLocation() {
   $('form').submit(event => {
     event.preventDefault();
     clearRouteData();
+    addAnimation();
     var cityTarget = $(event.currentTarget).find('.js-city-input');
     var city = cityTarget.val();
     var stateTarget = $(event.currentTarget).find('.js-state-input');
@@ -333,6 +344,7 @@ function newSearch() {
 		clearForm(cityTarget, stateTarget, minDiffTarget, maxDiffTarget, maxDistanceTarget, typeTarget);
 		clearRouteData();
 		clearLocationDisplay();
+		resetAnimation();
 	});
 }
 
